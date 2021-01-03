@@ -23,6 +23,7 @@ class GraphqlController < ApplicationController
   # gets current user from token stored in the session
   def current_user
     # if we want to change the sign-in strategy, this is the place to do it
+    return User.last
     return unless session[:token]
 
     crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base.byteslice(0..31))
